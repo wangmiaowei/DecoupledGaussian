@@ -1,0 +1,59 @@
+{
+    "opacity_threshold": 0.00,
+    "rotation_degree": [0.0],
+    "rotation_axis": [0],
+    "substep_dt": 1e-4,
+    "frame_dt": 3e-2,
+    "frame_num": 50,
+    "nu": 0.3,
+    "E": 3e6,
+    "material": "jelly",
+    "density": 6000,
+    "g": [0, 0, -7],
+    "n_grid": 350,
+    "grid_v_damping_scale": 0.9999,
+    "rpic_damping": 0.0,
+
+    "sim_area": [
+        -6.2323, 7.4343,
+        -5.6572, 7.3291,
+        -5.4700, 3.0989
+    ],
+    "boundary_conditions": [
+        {
+            "type": "bounding_box"
+        },
+        {
+            "type": "enforce_scene_translation",
+            "velocity": [
+                0,
+                0,
+                0
+            ],
+            "start_time": 0,
+            "end_time": 1e3
+        },
+        {
+            "type": "object_impulse",
+            "force": [
+                0.2,
+                0.0,
+                0.0
+            ],
+            "num_dt": 2,
+            "start_time": 0.05
+        }
+    ],
+    "mpm_space_vertical_upward_axis": [0,0,1],
+    "mpm_space_viewpoint_center": [1, 1, 1.1],
+    "default_camera_index": -1,
+    "show_hint": false,
+    "init_azimuthm": -210,
+    "init_elevation": 25,
+    "init_radius": 8.4,
+    "move_camera": true,
+    "delta_a": 2.5,
+    "delta_e": 0.0,
+    "delta_r": 0.0,
+    "z_offset": 2
+}
