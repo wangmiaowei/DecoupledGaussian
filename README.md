@@ -15,7 +15,13 @@ Jilin University, <sup>3</sup>Zhejiang University, <sup>4</sup>Michigan State Un
 our approach uses joint Poisson fields to repair and expand the Gaussians of both objects and contacted scenes after separation. This is complemented by a multi-carve strategy to refine the object’s geometry. Our system enables realistic simulations of decoupling motions, collisions, and fractures driven by user-specified impulses, supporting complex interactions within and across multiple scenes. We validate DecoupledGaussian through a comprehensive user study and quantitative benchmarks. This system enhances digital interaction with objects and scenes in real-world environments, benefiting industries such as VR, robotics, and autonomous driving.*
 
 ---
+## 📑 Open-Source Plan
 
+- [x] Teaser Simulation Cases
+- [ ] Upload Other Simulation Cases
+- [ ] Gaussian Preparation Code
+- [ ] Gaussian Restoration Code
+      
 ## Environment Setup
 ```bash
 # Clone Repository 
