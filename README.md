@@ -18,10 +18,20 @@ our approach uses joint Poisson fields to repair and expand the Gaussians of bot
 ## 📑 Open-Source Plan
 
 - [x] Teaser Simulation Cases
-- [ ] Upload Other Simulation Cases
+- [x] Upload Other Simulation Cases
 - [ ] Gaussian Preparation Code
 - [ ] Gaussian Restoration Code
-      
+## Restored Gaussian and Simulation Cases 
+
+Please read our config.json in the simulation cases forder
+| Cases    | Restored Gaussian Links    | Simulation Cases    |
+|--------|--------|--------|
+| Room  | [Object](https://drive.google.com/file/d/1vG2Q75Pd9ZEv1qvYMyDpqe-r7DDB4DdA/view?usp=sharing) [Scene](https://drive.google.com/file/d/1jszQPIELNgPIg7jGhdXnuxfih3WFJYEF/view?usp=sharing)    | [Motion](https://drive.google.com/drive/folders/1HriHz_IFjxoE2UarHvesXXxpMrHwAKyG?usp=sharing)  |
+| Kitchen  | [Object](https://drive.google.com/file/d/1M7O2zNwP-NXTf3XewKDXTF3zPxoqnRlP/view?usp=sharing) [Scene](https://drive.google.com/file/d/1fi0eD50IGaFqkzVKcJjQeE2eirXHUZIF/view?usp=sharing) | [Falling](https://drive.google.com/drive/folders/1jai_hNEOqj9CjMC4zqmCHf4AGPQR7SjV?usp=sharing) [Sand](https://drive.google.com/drive/folders/1ILgXJiIokvbkMkBa9qHkafRWw6ZKuCr7?usp=sharing) |
+| Truck_Bicycle  | [Truck Object](https://drive.google.com/file/d/1GH8WBVzDN53va4T5LcrR0rd8_tqNJlhL/view?usp=sharing) [Bicycle Scene](https://drive.google.com/file/d/19aND0SE_bvXdAO1y3zIyePWICjoRbHPr/view?usp=sharing) | [Falling](https://drive.google.com/drive/folders/1zahMTEO4A0VjGVa1nRfitgXMMyjYmkKW?usp=sharing) |
+| Bonsai  | [Object](https://drive.google.com/file/d/1cm_GIFIGIevIAuGRdwm07w-7w0hM07B1/view?usp=sharing) [Scene](https://drive.google.com/file/d/19jDL5X9Xzbd_a7AAAsh-9FYzh4-6388N/view?usp=sharing) | [Falling](https://drive.google.com/drive/folders/1t7LuBXt_f7JphWyJ2-OlHrfzUcReowlV?usp=sharing) [Tearing](https://drive.google.com/drive/folders/1I0d8h-F-m0Ck-kYe_RPN3ZgpTrPf1Dk6?usp=sharing)|
+| Figurines  | [All Object](https://drive.google.com/drive/folders/1Pi7e66-Mjeua5Btfzm26kpu3_uSpShNd?usp=sharing) |[Collision](https://drive.google.com/drive/folders/1d8aZvsnfyNznp37YIv6mynj1w1JISh48?usp=sharing)|
+| Garden  | [Object](https://drive.google.com/file/d/1HBgAS9JVPnqKYERWk3q3v7PohuU309uS/view?usp=sharing) [Scene](https://drive.google.com/file/d/1zUBWBUVs2QlEzmoRs_hEqyCgC76U-aJg/view?usp=sharing)|[Collision](https://drive.google.com/drive/folders/17GJP_3GpHGHZK8Zg1u-paB8aYfQH3KMG?usp=drive_link)|
 ## Environment Setup
 ```bash
 # Clone Repository 
