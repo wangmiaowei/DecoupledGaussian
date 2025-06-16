@@ -19,8 +19,8 @@ our approach uses joint Poisson fields to repair and expand the Gaussians of bot
 
 - [x] Teaser Simulation Cases
 - [x] Upload Other Simulation Cases
-- [ ] Gaussian Preparation Code
-- [ ] Gaussian Restoration Code
+- [ ] Gaussian Preparation Code (**🚨 RELEASE BEFORE JUNE 20, 2025! 🚨**)
+- [ ] Gaussian Restoration Code (**🚨 RELEASE BEFORE JUNE 20, 2025! 🚨**)
 ## Restored Gaussian and Simulation Cases 
 
 Please read our config.json in the simulation cases forder
