@@ -1,0 +1,20 @@
+max_steps: 40000
+data:
+  val_max_num_images_to_cache: -1
+  test_max_num_images_to_cache: -1
+model:
+  renderer:
+    class_path: internal.renderers.deformable_renderer.DeformableRenderer
+    init_args:
+      deform_network:
+        tcnn: false
+        #chunk: 16384  # avoid CUDA OOM
+      time_encoding:
+        n_frequencies: 10
+        n_layers: 0
+        n_neurons: 0
+      optimization:
+        enable_ast: true
+  gaussian:
+    optimization:
+      spatial_lr_scale: 5

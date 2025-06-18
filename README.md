@@ -35,7 +35,7 @@ Please read our config.json in the simulation cases forder
 ## Environment Setup
 ```bash
 # Clone Repository 
-git clone https://github.com/wangmiaowei/DecoupledGaussian.git
+git clone --recursive https://github.com/wangmiaowei/DecoupledGaussian.git
 
 # Navigate to the project directory
 cd DecoupledGaussian

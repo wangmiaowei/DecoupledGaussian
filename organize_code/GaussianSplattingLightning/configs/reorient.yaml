@@ -1,0 +1,5 @@
+data:
+  parser:
+    class_path: Colmap
+    init_args:
+      reorient: true

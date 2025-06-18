@@ -1,0 +1,12 @@
+data:
+  val_max_num_images_to_cache: -1
+  test_max_num_images_to_cache: -1
+  parser:
+    class_path: Colmap
+    init_args:
+      split_mode: "experiment"
+model:
+  renderer: internal.renderers.gsplat_renderer.GSPlatRenderer
+  density:
+    densify_grad_threshold: 0.0006
+    absgrad: true

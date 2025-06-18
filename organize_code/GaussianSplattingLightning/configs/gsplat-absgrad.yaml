@@ -1,0 +1,8 @@
+data:
+  val_max_num_images_to_cache: -1
+  test_max_num_images_to_cache: -1
+model:
+  renderer: internal.renderers.gsplat_renderer.GSPlatRenderer
+  density:
+    densify_grad_threshold: 0.0006
+    absgrad: true

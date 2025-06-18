@@ -1,0 +1,17 @@
+max_steps: 35_000
+logger: wandb
+data:
+  val_max_num_images_to_cache: -1
+  test_max_num_images_to_cache: -1
+  parser:
+    class_path: Colmap
+    init_args:
+      split_mode: "experiment"
+model:
+  renderer: internal.renderers.gsplat_renderer.GSPlatRenderer
+  gaussian:
+    optimization:
+      position_lr_max_steps: 35_000
+  light_gaussian:
+    prune_steps:
+      - 30_001
