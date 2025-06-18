@@ -246,3 +246,16 @@ python viewer.py ../exp_res/bear/point_cloud_obj/iteration_37000/point_cloud.ply
 **A:** I'd be happy to connect. Please feel free to reach out via email:
 📧 **[wangmiaowei20@gmail.com](mailto:wangmiaowei20@gmail.com)**
 Please use the subject line: **"DecoupledGaussian\_CVPR2025"**
+
+## Citation
+
+   If you find our repo useful for your research, please consider citing our paper:
+
+   ```bibtex
+    @InProceedings{decoupledGaussian,
+    title={DecoupledGaussian: Object-Scene Decoupling for Physics-Based Interaction},
+    author={Wang, Miaowei and Zhang, Yibo and Ma, Rui and Xu, Weiwei and Zou, Changqing and Morris, Daniel},
+    booktitle={Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition},
+    year={2025}}
+   ```
+
