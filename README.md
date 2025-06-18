@@ -16,11 +16,18 @@ our approach uses joint Poisson fields to repair and expand the Gaussians of bot
 
 ---
 ## 📑 Open-Source Plan
+We have released our all open-source code. 
+- ✅ Teaser Simulation Cases
+- ✅ Upload Other Simulation Cases
+- ✅ Gaussian Preparation Code 
+- ✅ Gaussian Restoration Code
 
-- [x] Teaser Simulation Cases
-- [x] Upload Other Simulation Cases
-- [ ] Gaussian Preparation Code (**🚨 RELEASE BEFORE JUNE 20, 2025! 🚨**)
-- [ ] Gaussian Restoration Code (**🚨 RELEASE BEFORE JUNE 20, 2025! 🚨**)
+## Gaussian Preparation and Restoration
+
+Our Gaussian preparation and restoration pipeline is a core novelty of this work.  
+To better understand the process, please refer to the detailed implementation provided in  
+[organize_code/README.md](organize_code/README.md).
+
 ## Restored Gaussian and Simulation Cases 
 
 Please read our config.json in the simulation cases forder
