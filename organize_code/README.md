@@ -1,6 +1,15 @@
+# [CVPR2025] DecoupledGaussian: Object-Scene Decoupling for Physics-Based Interaction
 
+### [[Project Page](https://wangmiaowei.github.io/DecoupledGaussian.github.io/)] [[arXiv](https://arxiv.org/abs/2503.05484v1)] 
 
-# ⚙️ 1. Environment Preparation
+Miaowei Wang<sup>1</sup>\, Yibo Zhang<sup>2</sup>\, Rui Ma<sup>2</sup>\, Weiwei Xu<sup>3</sup>\, Changqing Zou<sup>3</sup>, Daniel Morris<sup>4</sup><br>
+<sup>1</sup>The University of Edinburgh, <sup>2</sup>
+Jilin University, <sup>3</sup>Zhejiang University, <sup>4</sup>Michigan State University <br>
+
+![DecoupledGaussian](../assets/teaser.png)
+---
+
+## ⚙️ 1. Environment Preparation
 
 Please refer to the [`requirements.txt`](./requirements.txt) file for all Python packages required in this project.
 
@@ -11,7 +20,7 @@ In addition to the Python environment, our pipeline also depends on the followin
 - **SAM2**: Used for generating masks from videos
 - **Pretrained weights**: Stored under the `weights/` directory
 
-Follow the steps below to install these dependencies and prepare the required resources:
+1.1. Follow the steps below to install these dependencies and prepare the required resources:
 
 ```bash
 # Step 1: Install Poisson Surface Reconstruction
@@ -56,7 +65,7 @@ weights/
     └── sam2_hiera_large.pt
 ```
 
-We also rely on [PGSR](https://github.com/zju3dv/PGSR) as part of the Gaussian preparation pipeline. Please install its necessary submodules with the following commands:
+1.2. We also rely on [PGSR](https://github.com/zju3dv/PGSR) as part of the Gaussian preparation pipeline. Please install its necessary submodules with the following commands:
 ```bash
 cd PGSR
 pip install submodules/diff-plane-rasterization
@@ -64,7 +73,7 @@ pip install submodules/simple-knn
 cd ..
 ```
 
-Then, we demonstrate how to prepare a dataset using the BEAR example. Of course, you are free to use your own image sequences by following the same directory and file name structure:
+1.3. Then, we demonstrate how to prepare a dataset using the BEAR example. Of course, you are free to use your own image sequences by following the same directory and file name structure:
 ```
 Your_Customized_obj_name/
     ├── images/
@@ -102,8 +111,8 @@ python PGSR/render_orientnormals.py  -m ./exp_res/bear --max_depth 10.0 --voxel_
 
 
 
-# 🧩 2. Segment Gaussian
-Segmenting the object Gaussians from the contact surface can be a bit tedious and engineering-heavy. To simplify this process, we have preprocessed the Bear example for you. You can directly download the prepared results using:
+## 🧩 2. Segment Gaussian
+2.1. Segmenting the object Gaussians from the contact surface can be a bit tedious and engineering-heavy. To simplify this process, we have preprocessed the Bear example for you. You can directly download the prepared results using:
 ```shell
 # Download the Bear Gaussian results zip using gdown (requires: pip install gdown)
 gdown 121Lcqi533W-vlSu2W9qFfvNQxsBA7-KP
@@ -117,7 +126,7 @@ unzip bear.zip
 rm bear.zip
 cd ../..
 ```
-If you prefer to segment from scratch or apply it to your own data, please follow the guidance below:
+2.2. If you prefer to segment from scratch or apply it to your own data, please follow the guidance below:
 ```shell
 # Here our program is based on Gaussian splatting Lightning
 # https://github.com/yzslab/gaussian-splatting-lightning
@@ -159,101 +168,81 @@ For a detailed demonstration, please refer to our instruction video on YouTube:
 👉 [https://youtu.be/Y4CDc1r4sJ4](https://youtu.be/Y4CDc1r4sJ4)
 
 
-# 3. Restore Gaussian Splatting
+## 🎯 3. Restore Gaussian Splatting
 
-3.1. Please use our joint point fileds to get the geometry recovered
+3.1. First, use our joint point fields to recover the object and scene geometry:
 ```shell
 cd JointPointFields
-# reconstruct two poisson fields
-python step1_poisson_recons.py bear # two indepednet poisson fields 
-python step2_get_coarse_obj.py bear # recover the object 
-python step3_repair_scene_gaussian.py bear # recover the scene
+# Step 1: Reconstruct two independent Poisson fields
+python step1_poisson_recons.py bear
+
+# Step 2: Recover the coarse object geometry
+python step2_get_coarse_obj.py bear
+
+# Step 3: Repair the scene Gaussians
+python step3_repair_scene_gaussian.py bear
 cd ..
 ```
-3.2. Besides, in order to get the mask lables, we have to select label by:
+
+3.2. To obtain mask labels, launch the segmentation viewer and select the target object:
 ```shell
 cd mask_inpaint
 python mask_app.py bear
 ```
-Open the single object segmentation viewer like the above viewer in your browser with screenshot as
+Open the viewer in your browser (screenshot shown below):
 
-![mask_viewer](assets/mask_viewer.png)
+![mask\_viewer](assets/mask_viewer.png)
 
-We have two steps, click the object and then Submit here.
+* **Step 1:** Click on the object of interest.
+* **Step 2:** Click **Submit** to mask the other left frames.
 
-3.3. Then we try to impaint this masked region by
+
+3.3. Use the following command to inpaint the selected region:
 ```shell
 python LAMA_impaint.py bear
 cd ..
 ```
 
-3.4 The final step is to finetune Gaussians for both the object and contact surface with steps:
+3.4. Refine both the object and contact surface Gaussians:
 
 ```shell
 cd ../PGSR
-python train_obj.py bear # Fintune the object
-python train_surface.py  bear # Fintune the contact surface
+# Finetune the object Gaussians
+python train_obj.py bear
+
+# Finetune the contact surface Gaussians
+python train_surface.py bear
 ```
 
-3.5 Finally you can visualize restored object, contact surface, or both by:
+3.5 Use our viewer to inspect the restored components:
 ```shell
 cd ../GaussianSplattingLightning
 
-# view the restored object 
+cd ../GaussianSplattingLightning
+
+# View the restored object
 python viewer.py ../exp_res/bear/point_cloud_obj/iteration_37000/point_cloud.ply
-# view the restored scene 
+
+# View the restored scene
 python viewer.py ../exp_res/bear/point_cloud_scene/iteration_35000/point_cloud.ply
+
+# View both object and scene together
+python viewer.py ../exp_res/bear/point_cloud_obj/iteration_37000/point_cloud.ply  ../exp_res/bear/point_cloud_scene/iteration_35000/point_cloud.ply
 ```
+## ❓4. Question and Answer
+**Q1: Can we use video inpainting?**
+**A:** Video inpainting could be beneficial, and there may be open-source models available. However, due to limited time, we have not integrated or tested them in this project.
 
-# Installl Poisson Reconstruction
+**Q2: Could you improve the interactive viewer?**
+**A:** We acknowledge that the current viewer is not ideal and can be difficult to use. Unfortunately, due to time constraints, we have not optimized it further.
 
+**Q3: Why do you use both SAM-1 and SAM-2?**
+**A:** Our segmentation module is based on [Segment Anything Model (SAM)](https://segment-anything.com/). We used both SAM-1 and SAM-2 to experiment with different segmentation behaviors. You are free to modify the code and use only SAM-2 labels during training if preferred.
 
+**Q4: This seems like a bit of an engineering solution—are there better end-to-end alternatives?**
+**A:** You're right—this pipeline involves engineering compromises due to limited resources. We believe future approaches that combine generative models with strong geometric priors may offer more generalizable and streamlined solutions.
 
-
-
-# Using PGSR to Process 
-python PGSR/scripts/preprocess/convert.py --data_path ./input_dataset/bear
-python PGSR/train.py -s ./input_dataset/bear -m ./exp_res/bear --max_abs_split_points 0 --opacity_cull_threshold 0.05
-## Orient normals of mesh
-python PGSR/render_orientnormals.py  -m ./exp_res/bear --max_depth 10.0 --voxel_size 0.01
-
-# Please modify  "data_path","res_path" in ./GaussianSplattingning/run.sh
-
-cd GaussianSplattingLightning
-data_path=../input_dataset/bear
-res_path=../exp_res/bear
-
-python utils/get_sam_masks.py $data_path/images
-# # Rendering and Extract Mesh
-
-python utils/get_sam_mask_scales.py --model_path=$res_path  --data_path=$data_path
-python seganygs.py fit \
-    --config configs/segany_splatting.yaml \
-    --data.path  $data_path  \
-    --model.initialize_from $res_path \
-    -n $res_path -v seganygs \
-    --viewer
-python viewer.py $res_path/seganygs
-
-# crop object, scene and left stuff using our interactive webpage
-cd ..
-cd JointPointFields
-# reconstruct two poisson fields
-python step1_poisson_recons.py bear
-python step2_get_coarse_obj.py bear
-python step3_repair_scene_gaussian.py bear
-cd ..
-
-# Launch a manually select object mask server
-python mask_app.py bear
-cd ../PGSR
-python train_obj.py bear # Fintune the object mesh
-
-# Impaitnting object with mask
-python LAMA_impaint.py bear
-cd ../PGSR
-python train_surface.py  bear
-cd ../GaussianSplattingLightning
- python viewer.py ../exp_res/bear/point_cloud_scene/iteration_35000/point_cloud.ply
- 
-```
+**Q5: I'm interested in this direction. How can I discuss or collaborate with you?**
+**A:** I'd be happy to connect. Please feel free to reach out via email:
+📧 **[wangmiaowei20@gmail.com](mailto:wangmiaowei20@gmail.com)**
+Please use the subject line: **"DecoupledGaussian\_CVPR2025"**
