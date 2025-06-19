@@ -214,10 +214,8 @@ python train_obj.py bear
 python train_surface.py bear
 ```
 
-3.5 Use our viewer to inspect the restored components:
+3.5. Use our viewer to inspect the restored components:
 ```shell
-cd ../GaussianSplattingLightning
-
 cd ../GaussianSplattingLightning
 
 # View the restored object
